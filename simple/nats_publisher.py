@@ -4,14 +4,15 @@ import nats
 
 
 async def main():
-    async def message_handler(msg):
-        print(f"Received a message on \"{msg.subject} {msg.reply}\": {msg.data.decode()}")
-
     nc = await nats.connect(servers=["nats://localhost:4222"])
-    sub = await nc.subscribe("foo", cb=message_handler)
+    print("Run NATS publisher")
 
+    count: int = 0
     while True:
+        print(".", end="")
+        await nc.publish("foo", f"Hello #{count} from NATS publisher".encode('ascii'))
         await asyncio.sleep(1)
+        count += 1
 
     await nc.close()
 

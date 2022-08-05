@@ -4,7 +4,8 @@ import nats
 
 
 async def main():
-    nc = await nats.connect(servers=["nats://localhost:4222"])
+    nc = await nats.connect("nats://localhost:4222", user_credentials="user.creds")
+    print("Run NATS publisher")
 
     count: int = 0
     while True:
