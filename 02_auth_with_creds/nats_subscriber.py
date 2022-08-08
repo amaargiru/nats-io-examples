@@ -27,7 +27,8 @@ async def main():
     while True:
         await asyncio.sleep(1)
 
-    await nats_connector.close()
+    sub.unsubscribe()
+    await nats_connector.drain()
 
 
 if __name__ == "__main__":

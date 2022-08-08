@@ -38,7 +38,7 @@ async def main():
         await asyncio.sleep(1)
         count += 1
 
-    await nats_connector.close()
+    await nats_connector.drain()
 
 
 if __name__ == "__main__":
