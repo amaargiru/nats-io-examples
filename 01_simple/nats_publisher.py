@@ -1,5 +1,8 @@
+#!/usr/bin/python3
+
 import asyncio
 
+# pip install nats-py
 import nats
 
 
