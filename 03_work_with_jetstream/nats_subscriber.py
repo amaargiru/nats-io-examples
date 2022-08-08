@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 # Windows:
-# nats-server.exe -js REM Start NATS with JetStream
+# nats-server.exe -js REM Start NATS Server with JetStream
 # nats account info REM Check JetStream status
 
 # Linux:
-# sudo nats-server -js # Start NATS with JetStream
+# sudo nats-server -js # Start NATS Server with JetStream
 # nats account info # Check JetStream status
 
 import asyncio

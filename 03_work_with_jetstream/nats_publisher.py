@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 # Windows:
-# nats-server.exe -js REM Start NATS with JetStream
+# nats-server.exe -js REM Start NATS Server with JetStream
 # nats account info REM Check JetStream status
 
 # Linux:
-# sudo nats-server -js # Start NATS with JetStream
+# sudo nats-server -js # Start NATS Server with JetStream
 # nats account info # Check JetStream status
 
 import asyncio
@@ -30,9 +30,7 @@ async def main():
 
     count: int = 0
     while True:
-        print(".", end="")
-
-        ack = await jstream.publish("foo", f"Hello #{count} from NATS publisher".encode('ascii'))
+        ack = await jstream.publish("foo", f"Hello #{count} from NATS publisher".encode("ascii"))
         print(f"Ack: stream = \"{ack.stream}\", sequence = \"{ack.seq}\"")
 
         await asyncio.sleep(1)

@@ -22,7 +22,7 @@ async def main():
     count: int = 0
     while True:
         print(".", end="")
-        await nats_connector.publish("foo", f"Hello #{count} from NATS publisher".encode('ascii'))
+        await nats_connector.publish("foo", f"Hello #{count} from NATS publisher".encode("ascii"))
         await asyncio.sleep(1)
         count += 1
 
