@@ -22,7 +22,8 @@ async def main():
                                         max_outstanding_pings=6,
                                         allow_reconnect=True,
                                         dont_randomize=False,
-                                        reconnect_time_wait=5)
+                                        reconnect_time_wait=5,
+                                        no_echo=False)
     jstream = nats_connector.jetstream()
     await jstream.add_stream(name="sample_stream", subjects=["foo"])
     print("Run NATS publisher with stream")
@@ -40,5 +41,5 @@ async def main():
     await nats_connector.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

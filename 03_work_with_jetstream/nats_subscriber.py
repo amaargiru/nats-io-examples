@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+# Windows:
+# nats-server.exe -js REM Start NATS with JetStream
+# nats account info REM Check JetStream status
+
+# Linux:
+# sudo nats-server -js # Start NATS with JetStream
+# nats account info # Check JetStream status
+
 import asyncio
 
 # pip install nats-py
@@ -7,8 +15,11 @@ import nats
 
 
 async def main():
+    async def nats_receive_message_handler(msg):
+        print(f"Received a message from subject \"{msg.subject}\" (reply = \"{msg.reply}\"): {msg.data.decode()}")
+
     nats_connector = await nats.connect(servers=["nats://localhost:4222"],
-                                        name="NATS simple example publisher",
+                                        name="NATS JetStream example subscriber",
                                         connect_timeout=10,
                                         ping_interval=20,  # Forcing a closed connection after 20 * 6 = 120 s of inactivity
                                         max_outstanding_pings=6,
@@ -16,14 +27,11 @@ async def main():
                                         dont_randomize=False,
                                         reconnect_time_wait=5,
                                         no_echo=False)
-    print("Run NATS publisher")
+    sub = await nats_connector.subscribe("foo", cb=nats_receive_message_handler)
+    print("Run NATS subscriber")
 
-    count: int = 0
     while True:
-        print(".", end="")
-        await nats_connector.publish("foo", f"Hello #{count} from NATS publisher".encode('ascii'))
         await asyncio.sleep(1)
-        count += 1
 
     await nats_connector.close()
 

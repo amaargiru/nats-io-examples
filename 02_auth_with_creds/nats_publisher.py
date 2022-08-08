@@ -15,7 +15,8 @@ async def main():
                                         allow_reconnect=True,
                                         dont_randomize=False,
                                         reconnect_time_wait=5,
-                                        user_credentials="user.creds")  # Auth with a credentials file
+                                        user_credentials="user.creds",  # Auth with a credentials file
+                                        no_echo=False)
     print("Run NATS publisher with creds")
 
     count: int = 0
@@ -28,5 +29,5 @@ async def main():
     await nats_connector.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
