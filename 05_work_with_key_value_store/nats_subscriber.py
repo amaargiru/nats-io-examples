@@ -14,6 +14,7 @@ import sys
 # pip install nats-py
 import nats
 from nats.errors import NoServersError, TimeoutError
+from nats.js.errors import NotFoundError
 
 
 async def main():
@@ -53,14 +54,18 @@ async def main():
     print("Run NATS subscriber with key/value store")
 
     while True:
-        entry = await sample_kv.get("key")
-        print(f'KeyValue.Entry: key={entry.key}, value={entry.value}')
-        await asyncio.sleep(1)
+        try:
+            entry = await sample_kv.get("key")
+            print(f'KeyValue.Entry: key={entry.key}, value={entry.value}')
+        except NotFoundError as e:
+            print(str(e))
+        finally:
+            await asyncio.sleep(1)
 
     try:
         await nats_connector.flush(timeout=5)
-    except TimeoutError:
-        print("Flush timeout")
+    except TimeoutError as e:
+        print(f"Flush timeout: {str(e)}")
 
     await nats_connector.drain()
 

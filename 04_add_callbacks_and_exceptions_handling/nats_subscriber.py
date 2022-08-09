@@ -58,8 +58,8 @@ async def main():
 
     try:
         await nats_connector.flush(timeout=5)
-    except TimeoutError:
-        print("Flush timeout")
+    except TimeoutError as e:
+        print(f"Flush timeout: {str(e)}")
 
     sub.unsubscribe()
     await nats_connector.drain()

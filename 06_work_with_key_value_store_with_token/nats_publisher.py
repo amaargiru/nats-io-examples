@@ -42,7 +42,8 @@ async def main():
                                             error_cb=nats_error_handler,
                                             disconnected_cb=nats_disconnected_handler,
                                             reconnected_cb=nats_reconnected_handler,
-                                            closed_cb=nats_connection_closed_handler)
+                                            closed_cb=nats_connection_closed_handler,
+                                            token="123456781234567812345678")
     except NoServersError as e:
         print(str(e))
         sys.exit(1)  # Exiting the program with non-zero exit code
