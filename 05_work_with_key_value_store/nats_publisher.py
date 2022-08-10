@@ -43,8 +43,8 @@ async def main():
                                             disconnected_cb=nats_disconnected_handler,
                                             reconnected_cb=nats_reconnected_handler,
                                             closed_cb=nats_connection_closed_handler)
-    except NoServersError as e:
-        print(str(e))
+    except BaseException as e:
+        print(f"Unhandled error during connection attempt: {str(e)}")
         sys.exit(1)  # Exiting the program with non-zero exit code
 
     jstream = nats_connector.jetstream()
