@@ -27,6 +27,7 @@ pip install nats-py
       C-->D(4. Add callbacks and exception handling);
       D-->E(5. Work with Key/Value Store);
       E-->F(6. Work with token)
+      D-->G(7. Extract NATS connector class)
 ```
 
 1. Простейший пример.  
@@ -56,3 +57,5 @@ nats_connector = await nats.connect("nats://localhost:4222")
 5. Пример работы с [Key/Value Store](https://docs.nats.io/using-nats/developer/develop_jetstream/kv), надстройки над JetStream, позволяющей организовать более упорядоченное хранение информации.
 
 6. Key/Value Store + авторизация по [токену](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/tokens).
+
+7. Функционал работы с NATS выделен в отдельный класс.
