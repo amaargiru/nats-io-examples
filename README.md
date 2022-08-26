@@ -19,7 +19,7 @@ nats account info # Check JetStream status
 pip install nats-py
 ```
 
-Всего в этом репозитарии 6 примеров работы с NATS, описанных ниже.
+Всего в этом репозитарии 7 примеров работы с NATS, описанных ниже.
 ```mermaid
   graph TD;
       A(1. Basic example)-->B(2. Auth with credentials);
