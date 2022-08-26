@@ -19,7 +19,18 @@ nats account info # Check JetStream status
 pip install nats-py
 ```
 
-1. Простейший пример. Строку подключения
+Всего в этом репозитарии 6 примеров работы с NATS, описанных ниже.
+```mermaid
+  graph TD;
+      A(1. Basic example)-->B(2. Auth with credentials);
+      A-->C(3. Work with JetStream);
+      C-->D(4. Add callbacks and exception handling);
+      D-->E(5. Work with Key/Value Store);
+      E-->F(6. Work with token)
+```
+
+1. Простейший пример.  
+Строку подключения
 ```
 nats_connector = await nats.connect(servers=["nats://localhost:4222"],
                                         name="NATS simple example publisher",
