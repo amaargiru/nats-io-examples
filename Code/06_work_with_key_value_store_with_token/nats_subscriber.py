@@ -9,6 +9,7 @@
 # nats account info # Check JetStream status
 
 import asyncio
+import os
 import sys
 
 # pip install nats-py
@@ -25,7 +26,7 @@ async def main():
         print("NATS is disconnected")
 
     async def nats_reconnected_handler():
-        print(f"NATS is reconnected to {nats_connector.connected_url.netloc}")
+        print(f"NATS is reconnected")
 
     async def nats_connection_closed_handler():
         print("NATS connection is closed")
@@ -72,4 +73,10 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Exit from program by Ctrl-C")
+        os._exit(1)
+    except Exception as e:
+        print(f"Error: {e}")

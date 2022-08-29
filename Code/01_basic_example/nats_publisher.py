@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import asyncio
+import os
 
 # pip install nats-py
 import nats
@@ -29,4 +30,10 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Exit from program by Ctrl-C")
+        os._exit(1)
+    except Exception as e:
+        print(f"Error: {e}")

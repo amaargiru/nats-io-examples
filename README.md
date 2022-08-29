@@ -24,7 +24,7 @@ pip install nats-py
   graph TD;
       A(1. Basic example)-->B(2. Auth with credentials);
       A-->C(3. Work with JetStream);
-      C-->D(4. Add callbacks and exception handling);
+      C-->D(4. Add callbacks and exceptions handling);
       D-->E(5. Work with Key/Value Store);
       E-->F(6. Work with token)
       D-->G(7. Extract NATS connector class)

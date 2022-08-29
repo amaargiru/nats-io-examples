@@ -12,7 +12,7 @@ class NatsConnect:
             print("NATS is disconnected")
 
         async def nats_reconnected_handler():
-            print(f"NATS is reconnected to {nats_connector.connected_url.netloc}")
+            print(f"NATS is reconnected")
 
         async def nats_connection_closed_handler():
             print("NATS connection is closed")

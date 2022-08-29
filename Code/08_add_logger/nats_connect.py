@@ -16,7 +16,7 @@ class NatsConnect:
             self.logger.error("NATS is disconnected")
 
         async def nats_reconnected_handler():
-            self.logger.warning(f"NATS is reconnected to {nats_connector.connected_url.netloc}")
+            self.logger.warning(f"NATS is reconnected")
 
         async def nats_connection_closed_handler():
             self.logger.error("NATS connection is closed")
