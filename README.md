@@ -19,7 +19,7 @@ nats account info # Check JetStream status
 pip install nats-py
 ```
 
-Всего в этом репозитарии 8 примеров работы с NATS, описанных ниже.
+Всего в этом репозитарии 9 примеров работы с NATS, описанных ниже.
 ```mermaid
   graph TD;
       A(1. Basic example)-->B(2. Auth with credentials);
@@ -29,6 +29,7 @@ pip install nats-py
       E-->F(6. Work with token)
       D-->G(7. Extract NATS connector class)
       G-->H(8. Add logger)
+      E-->I(9. Add manual reconnect)
 ```
 
 1. Простейший пример.  
@@ -62,5 +63,7 @@ nats_connector = await nats.connect("nats://localhost:4222")
 7. Функционал работы с NATS выделен в отдельный класс.
 
 8. Добавлен логгер для вывода логов как в консоль (colorlog), так и в файл (RotatingFileHandler).
+
+9. Добавляем ручной реконнект. При использовании JetStream или Key/Value Store реконнект не срабатывает (вот до сих пор открытое [issue](https://github.com/nats-io/nats.net/issues/551)), поэтому был добавлен метод обхода этой проблемы.
 
 Ветка с примерами 5 и 6 не совсем полноценна, потому что разработчики NATS до сих пор не реализовали функционал подписки на Key/Value хранилища (т. н. watch()), поэтому подписчик фактически вынужден "вручную" забирать данные при помощи get(), поэтому я бы рекомендовал для практической работы пример № 8 (на базе JetStream).

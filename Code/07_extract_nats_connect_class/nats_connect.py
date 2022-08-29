@@ -1,5 +1,6 @@
 import sys
 
+# pip install nats-py
 import nats
 
 
