@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
 import asyncio
-
-# pip install nats-py
 import os
 
+# pip install nats-py
 import nats
 
 
@@ -30,7 +29,9 @@ async def main():
         await asyncio.sleep(1)
 
     sub.unsubscribe()
+    await nats_connector.flush()
     await nats_connector.drain()
+    await nats_connector.close()
 
 
 if __name__ == "__main__":

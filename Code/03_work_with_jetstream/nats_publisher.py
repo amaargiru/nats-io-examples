@@ -9,10 +9,9 @@
 # nats account info # Check JetStream status
 
 import asyncio
-
-# pip install nats-py
 import os
 
+# pip install nats-py
 import nats
 
 

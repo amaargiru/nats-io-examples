@@ -14,7 +14,7 @@ import sys
 
 # pip install nats-py
 import nats
-from nats.errors import NoServersError, TimeoutError
+from nats.errors import TimeoutError
 from nats.js.errors import NotFoundError
 
 
@@ -69,7 +69,9 @@ async def main():
     except TimeoutError as e:
         print(f"Flush timeout: {str(e)}")
 
+    await nats_connector.flush()
     await nats_connector.drain()
+    await nats_connector.close()
 
 
 if __name__ == "__main__":

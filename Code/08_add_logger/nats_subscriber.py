@@ -44,7 +44,9 @@ async def main():
         print(f"Flush timeout error: {str(e)}")
 
     sub.unsubscribe()
+    await nats_connector.flush()
     await nats_connector.drain()
+    await nats_connector.close()
 
 
 if __name__ == "__main__":

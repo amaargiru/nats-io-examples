@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+# Windows:
+# nats-server.exe -js REM Start NATS Server with JetStream
+# nats account info REM Check JetStream status
+
+# Linux:
+# sudo nats-server -js # Start NATS Server with JetStream
+# nats account info # Check JetStream status
+
 import asyncio
 import os
 
@@ -27,7 +35,9 @@ async def main():
         await asyncio.sleep(1)
 
     sub.unsubscribe()
+    await nats_connector.flush()
     await nats_connector.drain()
+    await nats_connector.close()
 
 
 if __name__ == "__main__":

@@ -48,6 +48,7 @@ async def nats_connect():
     except BaseException as e:
         print(f"Unhandled error during connection attempt: {str(e)}")
         sys.exit(1)  # Exiting the program with non-zero exit code
+
     jstream = nats_connector.jetstream()
     sample_kv = await jstream.create_key_value(bucket="sample_kv")
     return nats_connector, sample_kv
@@ -80,7 +81,9 @@ async def main():
     except TimeoutError as e:
         print(f"Flush timeout: {str(e)}")
 
+    await nats_connector.flush()
     await nats_connector.drain()
+    await nats_connector.close()
 
 
 if __name__ == "__main__":

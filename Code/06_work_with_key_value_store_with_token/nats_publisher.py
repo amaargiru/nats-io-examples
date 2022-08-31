@@ -14,7 +14,7 @@ import sys
 
 # pip install nats-py
 import nats
-from nats.errors import NoServersError, TimeoutError
+from nats.errors import TimeoutError
 
 
 async def main():
